@@ -15,7 +15,9 @@ const getTeamsRanking = async (link = baseTeamRankingURL) => {
   let testRanking = rankingObj.TEST.children;
   let odiRanking = rankingObj.ODI.children;
   let t20Ranking = rankingObj.T20I.children;
-
+  ranking.odi = [];
+  ranking.t20 = [];
+  ranking.test = [];
   await makeList(testRanking, ranking.test, $);
   await makeList(odiRanking, ranking.odi, $);
   await makeList(t20Ranking, ranking.t20, $);
@@ -26,6 +28,7 @@ const getTestTeamRanking = async (link = baseTeamRankingURL) => {
   const { $ } = await getHtml(link);
   const rankingObj = await getRankingObj($);
   let testRanking = rankingObj.TEST.children;
+  ranking.test = [];
   await makeList(testRanking, ranking.test, $);
   return ranking.test;
 };
@@ -34,6 +37,7 @@ const getODITeamRanking = async (link = baseTeamRankingURL) => {
   const { $ } = await getHtml(link);
   const rankingObj = await getRankingObj($);
   let odiRanking = rankingObj.ODI.children;
+  ranking.odi = [];
   await makeList(odiRanking, ranking.odi, $);
   return ranking.odi;
 };
@@ -42,6 +46,7 @@ const getT20TeamRanking = async (link = baseTeamRankingURL) => {
   const { $ } = await getHtml(link);
   const rankingObj = await getRankingObj($);
   let t20Ranking = rankingObj.T20I.children;
+  ranking.t20 = [];
   await makeList(t20Ranking, ranking.t20, $);
   return ranking.t20;
 };
@@ -101,29 +106,35 @@ const getPlayerRanking = async (format, type, array) => {
 };
 
 const getODIPlayerBattingRanking = async () =>{
+  ranking.odi = [];
   const odiRanking =  await getPlayerRanking("odi" ,"batting" ,ranking.odi);
   return odiRanking;
 }
 
 const getT20PlayerBattingRanking = async () =>{
+  ranking.t20 = [];
   const t20Ranking = await getPlayerRanking("t20","batting" , ranking.t20);
   return t20Ranking;
 }
 
 const getTestPlayerBattingRanking = async () => {
+  ranking.test = [];
   const testRanking = await getPlayerRanking("test","batting" , ranking.test);
   return testRanking;
 }
 
 const getODIPlayerBowlingRanking = async () => {
+  ranking.odi = [];
   const odiRanking = await getPlayerRanking("odi","bowling" ,ranking.odi);
   return odiRanking;
 }
 const getT20PlayerBowlingRanking = async () => {
+  ranking.t20 = [];
   const t20Ranking = await getPlayerRanking("t20","bowling" ,ranking.t20);
   return t20Ranking;
 }
 const getTestPlayerBowlingRanking = async () => {
+  ranking.test = [];
   const testRanking = await getPlayerRanking("test","bowling" ,ranking.test);
   return testRanking;
 }
