@@ -150,5 +150,4 @@ module.exports = {
   getODIPlayerBowlingRanking,
   getTestPlayerBowlingRanking,
   getT20PlayerBowlingRanking,
-
 };
